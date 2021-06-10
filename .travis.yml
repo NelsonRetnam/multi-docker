@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t nelsonr/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true nelsonr/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t nelsonr/multi-client ./client
+  - docker build -t nelsonr/multi-nginx ./nginx
+  - docker build -t nelsonr/multi-server ./server
+  - docker build -t nelsonr/multi-worker ./worker
+  # login in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push nelsonr/multi-client
+  - docker push nelsonr/multi-nginx
+  - docker push nelsonr/multi-server
+  - docker push nelsonr/multi-worker
