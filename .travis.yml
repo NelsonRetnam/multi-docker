@@ -14,7 +14,7 @@ after_success:
   - docker build -t nelson6r/multi-server ./server
   - docker build -t nelson6r/multi-worker ./worker
   # login in to docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push nelson6r/multi-client
   - docker push nelson6r/multi-nginx
   - docker push nelson6r/multi-server
