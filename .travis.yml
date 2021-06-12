@@ -20,6 +20,7 @@ after_success:
   - docker push nelson6r/multi-server
   - docker push nelson6r/multi-worker
   
+  # deployment settings
   deploy:
     provider: elasticbeanstalk
     region: ap-south-1
