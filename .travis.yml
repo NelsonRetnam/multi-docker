@@ -22,13 +22,12 @@ after_success:
   - docker push nelson6r/multi-worker
 deploy:
   provider: elasticbeanstalk
-  region: ap-south-1
-  app: multi-docker
-  env: Multidocker-env
-  bucker_name: elasticbeanstalk-ap-south-1-353594477466
-  bucker_path: docker-multi
+  region: "ap-south-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucker_name: "elasticbeanstalk-ap-south-1-353594477466"
+  bucker_path: "docker-multi"
     on:
       branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  
